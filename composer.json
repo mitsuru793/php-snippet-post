@@ -2,7 +2,9 @@
     "name": "mitsuru793/php-snippet-post",
     "description": "snippet page generator",
     "type": "library",
-    "require": {},
+    "require": {
+        "tightenco/collect": "^5.5"
+    },
     "require-dev": {
         "phpunit/phpunit": "^6.4"
     },
