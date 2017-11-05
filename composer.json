@@ -1,0 +1,6 @@
+{
+    "name": "mitsuru793/php-snippet-post",
+    "description": "snippet page generator",
+    "type": "library",
+    "require": {}
+}
