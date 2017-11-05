@@ -23,6 +23,12 @@ use UnexpectedValueException;
  */
 class Post
 {
+    // TODO other file type
+    const COMMENT_BLOCK = [
+        'php' => [['/*', '<!--'], ['*/', '-->']],
+        'rb' => [['=begin'], ['=end']],
+    ];
+
     private const  DATE_PATTERN = '/\d{4}-\d{2}-\d{2}/';
 
     /** @var string */
@@ -37,12 +43,14 @@ class Post
     /** @var Lines */
     private $body;
 
-    public function __construct(string $filePath, array $startPatterns, array $endPatterns)
+    public function __construct(string $filePath)
     {
         $this->path = $filePath;
 
         // parse file
-        $lines = Lines::fromFile($filePath)->frontMatter($startPatterns, $endPatterns);
+        $ext = pathinfo($this->path, PATHINFO_EXTENSION);
+        $commentPatterns = self::COMMENT_BLOCK[$ext];
+        $lines = Lines::fromFile($filePath)->frontMatter($commentPatterns[0], $commentPatterns[1]);
         if ($lines->count() < 3) {
             throw new UnexpectedValueException('Fromt matter must consists of more than 3 lines: $filePath');
         }

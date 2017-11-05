@@ -11,20 +11,20 @@ class PostTest extends TestCase
     public function testConstruct()
     {
         $root = vfsStream::setup();
-        $file = $root->url() . '/2017-12-01';
+        $file = $root->url() . '/2017-12-01.php';
         $content = implode("\n", [
-            '---',
+            '/*',
             'title',
             '',
             'desc1',
             'desc2',
-            '---',
+            '*/',
             'hello',
             'world',
         ]);
         file_put_contents($file, $content);
 
-        $post = new Post($file, ['---'], ['---']);
+        $post = new Post($file);
 
         $this->assertSame($file, $post->getPath());
         $this->assertSame('title', $post->getTitle());
@@ -38,15 +38,15 @@ class PostTest extends TestCase
     public function testConstructWithEmptyFrontMatter()
     {
         $root = vfsStream::setup();
-        $file = $root->url() . '/2017-12-01';
+        $file = $root->url() . '/2017-12-01.php';
         $content = implode("\n", [
-            '---',
-            '---',
+            '/*',
+            '*/',
             'hello',
         ]);
         file_put_contents($file, $content);
 
         $this->expectException(UnexpectedValueException::class);
-        new Post($file, ['---'], ['---']);
+        new Post($file);
     }
 }
