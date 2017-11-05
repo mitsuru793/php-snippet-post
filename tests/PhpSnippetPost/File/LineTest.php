@@ -23,7 +23,7 @@ class LineTest extends TestCase
      */
     public function testIsCommentStart(string $value, bool $expected)
     {
-        Line::setCommentStartPattern(['/\*\*', '<!--']);
+        Line::setCommentStartPattern(['/**', '<!--']);
         $line = Line::of($value);
         $this->assertSame($expected, $line->isCommentStart());
     }
@@ -44,7 +44,7 @@ class LineTest extends TestCase
      */
     public function testIsCommentEnd(string $value, bool $expected)
     {
-        Line::setCommentEndPattern(['\*\*/', '-->']);
+        Line::setCommentEndPattern(['**/', '-->']);
         $line = Line::of($value);
         $this->assertSame($expected, $line->isCommentEnd());
     }

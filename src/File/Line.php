@@ -32,15 +32,23 @@ class Line extends ValueObject
         return $this->value;
     }
 
-
     public static function setCommentStartPattern(array $patterns): void
     {
-        self::$commentStartPattern = implode('|', $patterns);
+        self::$commentStartPattern = self::joinPatternsEscaping($patterns);
     }
 
     public static function setCommentEndPattern(array $patterns): void
     {
-        self::$commentEndPattern = implode('|', $patterns);
+        self::$commentEndPattern = self::joinPatternsEscaping($patterns);
+    }
+
+    private static function joinPatternsEscaping(array $patterns): string
+    {
+        $joined = '';
+        foreach ($patterns as $pattern) {
+            $joined .= '|' . preg_quote($pattern);
+        }
+        return ltrim($joined, '|');
     }
 
     public function isCommentStart(): bool
