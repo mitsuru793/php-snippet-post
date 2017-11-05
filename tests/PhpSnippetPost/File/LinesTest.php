@@ -28,6 +28,7 @@ class LinesTest extends TestCase
         $this->assertInstanceOf(Lines::class, $lines);
 
         $actual = ($lines->map(function ($line) {
+            /** @var Line $line */
             return $line->value();
         })->all());
         $this->assertSame($expected, $actual);
@@ -59,6 +60,7 @@ class LinesTest extends TestCase
             'val2',
         ];
         $actual = ($frontMatter->map(function ($line) {
+            /** @var Line $line */
             return $line->value();
         })->all());
         $this->assertSame($expected, $actual);
