@@ -6,6 +6,9 @@ use Illuminate\Support\Collection;
 
 class Lines extends Collection
 {
+    /** @var Line */
+    protected $items;
+
     /**
      * Lines constructor.
      * @param array <Line> $lines
