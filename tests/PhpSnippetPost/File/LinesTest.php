@@ -17,21 +17,12 @@ class LinesTest extends TestCase
     {
         $root = vfsStream::setup();
         $file = $root->url() . '/text';
-        $expected = [
-            'v1',
-            'v2',
-        ];
-        $content = implode(PHP_EOL, $expected);
+        $content = implode(PHP_EOL, ['v1', 'v2']);
         file_put_contents($file, $content);
 
         $lines = Lines::fromFile($file);
         $this->assertInstanceOf(Lines::class, $lines);
-
-        $actual = ($lines->map(function ($line) {
-            /** @var Line $line */
-            return $line->value();
-        })->all());
-        $this->assertSame($expected, $actual);
+        $this->assertSame($content, (string)$lines);
 
         // TODO missing file
     }
@@ -54,16 +45,8 @@ class LinesTest extends TestCase
         $frontMatter = $lines->frontMatter(['--'], ['--']);
         $this->assertInstanceOf(Lines::class, $frontMatter);
 
-        $expected = [
-            'val1',
-            '',
-            'val2',
-        ];
-        $actual = ($frontMatter->map(function ($line) {
-            /** @var Line $line */
-            return $line->value();
-        })->all());
-        $this->assertSame($expected, $actual);
+        $expected = implode(PHP_EOL, ['val1', '', 'val2']);
+        $this->assertSame($expected, (string)$frontMatter);
     }
 
     public function testFrontMatterWithoutCommentBlock()
