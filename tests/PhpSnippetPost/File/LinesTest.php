@@ -7,6 +7,12 @@ use PHPUnit\Framework\TestCase;
 
 class LinesTest extends TestCase
 {
+    public function testToString()
+    {
+        $lines = new Lines([Line::of('v1'), Line::of('v2')]);
+        $this->assertSame("v1\nv2", (string)$lines);
+    }
+
     public function testFromFile()
     {
         $root = vfsStream::setup();

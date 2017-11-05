@@ -15,6 +15,15 @@ class Lines extends Collection
         parent::__construct($lines);
     }
 
+    public function __toString()
+    {
+        $joined = '';
+        foreach ($this->items as $item) {
+            $joined .= $item . PHP_EOL;
+        }
+        return rtrim($joined, PHP_EOL);
+    }
+
     /**
      * construct from file
      * @param string $filePath
