@@ -27,6 +27,12 @@ class Line extends ValueObject
         parent::__construct($value);
     }
 
+    public function __toString()
+    {
+        return $this->value;
+    }
+
+
     public static function setCommentStartPattern(array $patterns): void
     {
         self::$commentStartPattern = implode('|', $patterns);

@@ -12,6 +12,12 @@ class LineTest extends TestCase
         $this->assertSame('val', $line->value());
     }
 
+    public function testToString()
+    {
+        $line = Line::of('val');
+        $this->assertSame('val', (string)$line);
+    }
+
     /**
      * @dataProvider additionIsCommentStart
      */
