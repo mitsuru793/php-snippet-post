@@ -40,14 +40,14 @@ class Lines extends Collection
 
     /**
      * Get comment block without start and end lines at top.
-     * @param string $startPattern of front matter
-     * @param string $endPattern of front matter
+     * @param array $startPatterns of front matter
+     * @param array $endPatterns of front matter
      * @return Lines
      */
-    public function frontMatter(array $startPattern, array $endPattern): self
+    public function frontMatter(array $startPatterns, array $endPatterns): self
     {
-        Line::setCommentStartPattern($startPattern);
-        Line::setCommentEndPattern($endPattern);
+        Line::setCommentStartPattern($startPatterns);
+        Line::setCommentEndPattern($endPatterns);
 
         /** @var $inComment
          *  need when
