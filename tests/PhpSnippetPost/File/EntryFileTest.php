@@ -2,6 +2,7 @@
 
 namespace PhpSnippetPost\File;
 
+use Helper\Fixture;
 use org\bovigo\vfs\vfsStream;
 use PhpSnippetPost\Exception\DirectoryHasNoEntryFileException;
 use PhpSnippetPost\Exception\NotDirectoryPathException;
@@ -10,12 +11,14 @@ use PHPUnit\Framework\TestCase;
 
 class EntryFileTest extends TestCase
 {
-    /** @var string */
-    private $root;
+    public function setUp()
+    {
+        Fixture::$root = vfsStream::setup()->url();
+    }
 
     public function testConstruct()
     {
-        $path = $this->makeFile('found.php');
+        $path = Fixture::file('found.php');
         $file = new EntryFile($path);
         $this->assertSame($path, $file->path());
 
@@ -26,9 +29,9 @@ class EntryFileTest extends TestCase
     public function testFromDir()
     {
         $fileNames = ['first.php', 'second.php'];
-        $dir = $this->makeDir('dir');
+        $dir = Fixture::dir('dir');
 
-        $this->makeFile("$dir/second.php");
+        Fixture::file("$dir/second.php");
         $file = EntryFile::fromDir($dir, $fileNames);
         $this->assertNotSame("$dir/first.php", $file->path());
         $this->assertSame("$dir/second.php", $file->path());
@@ -43,30 +46,10 @@ class EntryFileTest extends TestCase
     public function testFromDirFirstMatches()
     {
         $fileNames = ['first.php', 'second.php'];
-        $dir = $this->makeDir('dir');
+        $dir = Fixture::dir('dir');
 
-        $path = $this->makeFile("$dir/first.php");
+        $path = Fixture::file("$dir/first.php");
         $file = EntryFile::fromDir($dir, $fileNames);
         $this->assertSame($path, $file->path());
-    }
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->root = vfsStream::setup()->url();
-    }
-
-    private function makeFile($path): string
-    {
-        if (!preg_match("~^{$this->root}~", $path)) {
-            $path = "$this->root/$path";
-        }
-        return touch($path) ? $path : '';
-    }
-
-    private function makeDir($dir): string
-    {
-        $path = $this->root . "/$dir";
-        return mkdir($path) ? $path : '';
     }
 }
