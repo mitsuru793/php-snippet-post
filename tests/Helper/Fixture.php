@@ -30,4 +30,17 @@ class Fixture
         $path = self::$root . "/$path";
         return mkdir($path) ? $path : '';
     }
+
+    /**
+     * create directories at each path
+     * @param string[] $paths
+     * @return string[] created directory names which doesn't have failed one
+     */
+    public static function dirs(array $paths): array
+    {
+        $paths = array_map(function ($path) {
+            return self::dir($path);
+        }, $paths);
+        return array_filter($paths);
+    }
 }
