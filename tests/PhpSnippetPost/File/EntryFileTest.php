@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class EntryFileTest extends TestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         Fixture::$root = vfsStream::setup()->url();
     }
