@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
 use Illuminate\Support\Collection;
 
-class Lines extends Collection
+final class Lines extends Collection
 {
     /** @var Line */
     protected $items;
@@ -34,6 +35,7 @@ class Lines extends Collection
      */
     public static function fromFile(string $filePath): self
     {
+        // TODO collection
         $lines = explode(PHP_EOL, file_get_contents($filePath));
         $lines = array_map(function ($line) {
             return new Line($line);

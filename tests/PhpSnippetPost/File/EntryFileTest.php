@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
@@ -9,7 +10,7 @@ use PhpSnippetPost\Exception\NotDirectoryPathException;
 use PhpSnippetPost\Exception\NotFilePathException;
 use PHPUnit\Framework\TestCase;
 
-class EntryFileTest extends TestCase
+final class EntryFileTest extends TestCase
 {
     protected function setUp()
     {

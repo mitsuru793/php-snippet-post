@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
 use Illuminate\Support\Collection;
 
-class Posts extends Collection
+final class Posts extends Collection
 {
     public function __construct($posts)
     {

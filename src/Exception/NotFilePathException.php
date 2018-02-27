@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\Exception;
 
 use InvalidArgumentException;
 
-class NotFilePathException extends InvalidArgumentException
+final class NotFilePathException extends InvalidArgumentException
 {
     public function __construct(string $filePath)
     {

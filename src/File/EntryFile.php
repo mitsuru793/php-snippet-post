@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
@@ -14,7 +15,7 @@ use Prophecy\Exception\InvalidArgumentException;
  *
  * @package PhpSnippetPost\File
  */
-class EntryFile
+final class EntryFile
 {
     /** @var string */
     protected $path;

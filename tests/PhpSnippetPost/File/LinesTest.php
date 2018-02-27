@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
-class LinesTest extends TestCase
+final class LinesTest extends TestCase
 {
     public function testToString()
     {

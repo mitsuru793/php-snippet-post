@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
 use Illuminate\Support\Collection;
 use PhpSnippetPost\Exception\DirectoryHasNoEntryFileException;
 
-class EntryFiles extends Collection
+final class EntryFiles extends Collection
 {
     public function __construct(array $entryPointPaths)
     {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
@@ -11,7 +12,7 @@ use PhpSnippetPost\ValueObject;
  *
  * @package PhpSnippetPost\File
  */
-class Line extends ValueObject
+final class Line extends ValueObject
 {
     /** @var string */
     static private $commentStartPattern;
@@ -53,12 +54,12 @@ class Line extends ValueObject
 
     public function isCommentStart(): bool
     {
-        return preg_match('~^(' . self::$commentStartPattern . ')$~', $this->value);
+        return (bool)preg_match('~^(' . self::$commentStartPattern . ')$~', $this->value);
     }
 
     public function isCommentEnd(): bool
     {
-        return preg_match('~^(' . self::$commentEndPattern . ')$~', $this->value);
+        return (bool)preg_match('~^(' . self::$commentEndPattern . ')$~', $this->value);
     }
 
     public function isEmpty(): bool

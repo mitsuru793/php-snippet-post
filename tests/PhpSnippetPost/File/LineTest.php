@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
 use PHPUnit\Framework\TestCase;
 
-class LineTest extends TestCase
+final class LineTest extends TestCase
 {
     public function testConstruct()
     {

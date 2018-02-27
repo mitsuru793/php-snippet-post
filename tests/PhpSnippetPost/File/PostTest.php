@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
@@ -6,7 +7,7 @@ use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use UnexpectedValueException;
 
-class PostTest extends TestCase
+final class PostTest extends TestCase
 {
     public function testConstruct()
     {

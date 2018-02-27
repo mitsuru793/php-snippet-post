@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Helper;
 
-class Fixture
+final class Fixture
 {
     /** @var string */
     public static $root;

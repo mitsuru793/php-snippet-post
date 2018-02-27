@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
@@ -6,7 +7,7 @@ use Helper\Fixture;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
-class EntryFilesTest extends TestCase
+final class EntryFilesTest extends TestCase
 {
     protected function setUp()
     {

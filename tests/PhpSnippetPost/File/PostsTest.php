@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
-class PostsTest extends TestCase
+final class PostsTest extends TestCase
 {
     public function testFromFiles()
     {

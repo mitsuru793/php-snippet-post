@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PhpSnippetPost\File;
 
@@ -21,7 +22,7 @@ use UnexpectedValueException;
  *
  * @package PhpSnippetPost\File
  */
-class Post
+final class Post
 {
     // TODO other file type
     const COMMENT_BLOCK = [
