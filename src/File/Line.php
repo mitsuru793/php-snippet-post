@@ -60,4 +60,14 @@ class Line extends ValueObject
     {
         return preg_match('~^(' . self::$commentEndPattern . ')$~', $this->value);
     }
+
+    public function isEmpty(): bool
+    {
+        return (bool)preg_match('/^$/', $this->value);
+    }
+
+    public function isNotEmpty(): bool
+    {
+        return !$this->isEmpty();
+    }
 }

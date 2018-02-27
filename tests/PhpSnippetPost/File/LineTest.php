@@ -59,4 +59,22 @@ class LineTest extends TestCase
             ['//', false],
         ];
     }
+
+    /**
+     * @throws \PHPUnit\Framework\AssertionFailedError
+     */
+    public function testIsEmpty()
+    {
+        $this->assertTrue((new Line(''))->isEmpty());
+        $this->assertFalse((new Line(' '))->isEmpty());
+    }
+
+    /**
+     * @throws \PHPUnit\Framework\AssertionFailedError
+     */
+    public function testIsNotEmpty()
+    {
+        $this->assertFalse((new Line(''))->isNotEmpty());
+        $this->assertTrue((new Line(' '))->isNotEmpty());
+    }
 }
