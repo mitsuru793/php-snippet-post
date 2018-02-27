@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+use PhpSnippetPost\Console\TocCommand;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$app = new Symfony\Component\Console\Application('Php Snippet Post', '0.0.1');
+
+try {
+    $app->add(new TocCommand());
+    $app->run();
+} catch (LogicException | Exception $e) {
+
+}
