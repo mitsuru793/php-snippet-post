@@ -52,7 +52,7 @@ class Post
         $commentPatterns = self::COMMENT_BLOCK[$ext];
         $lines = Lines::fromFile($filePath)->frontMatter($commentPatterns[0], $commentPatterns[1]);
         if ($lines->count() < 3) {
-            throw new UnexpectedValueException('Front matter must consists of more than 3 lines: $filePath');
+            throw new UnexpectedValueException("Front matter must consists of more than 3 lines: $filePath");
         }
 
         preg_match(self::DATE_PATTERN, $filePath, $matches);
