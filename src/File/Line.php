@@ -27,11 +27,6 @@ class Line extends ValueObject
         parent::__construct($value);
     }
 
-    public function __toString()
-    {
-        return $this->value;
-    }
-
     public static function setCommentStartPattern(array $patterns): void
     {
         self::$commentStartPattern = self::joinPatternsEscaping($patterns);
@@ -49,6 +44,11 @@ class Line extends ValueObject
             $joined .= '|' . preg_quote($pattern);
         }
         return ltrim($joined, '|');
+    }
+
+    public function __toString()
+    {
+        return $this->value;
     }
 
     public function isCommentStart(): bool
