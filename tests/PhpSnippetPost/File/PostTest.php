@@ -49,4 +49,38 @@ class PostTest extends TestCase
         $this->expectException(UnexpectedValueException::class);
         new Post($file);
     }
+
+    public function testConstructWith1LineFrontMatter()
+    {
+        $root = vfsStream::setup();
+        $file = $root->url() . '/2017-12-01.php';
+        $content = implode("\n", [
+            '/*',
+            'title',
+            '*/',
+            'hello',
+        ]);
+        file_put_contents($file, $content);
+
+        $post = new Post($file);
+        $this->assertSame('title', $post->getTitle());
+        $this->assertSame('', (string)$post->getBody());
+    }
+
+    public function testConstructWithNoEmptyLine()
+    {
+        $root = vfsStream::setup();
+        $file = $root->url() . '/2017-12-01.php';
+        $content = implode("\n", [
+            '/*',
+            'title',
+            ' ',
+            '*/',
+            'hello',
+        ]);
+        file_put_contents($file, $content);
+
+        $this->expectException(UnexpectedValueException::class);
+        new Post($file);
+    }
 }

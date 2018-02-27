@@ -51,14 +51,22 @@ class Post
         $ext = pathinfo($this->path, PATHINFO_EXTENSION);
         $commentPatterns = self::COMMENT_BLOCK[$ext];
         $lines = Lines::fromFile($filePath)->frontMatter($commentPatterns[0], $commentPatterns[1]);
-        if ($lines->count() < 1) {
+
+        $lineCount = $lines->count();
+        if ($lineCount < 1) {
             throw new UnexpectedValueException("Front matter must consists of more than 1 lines: $filePath");
+        } elseif ($lineCount === 1) {
+            $this->body = new Lines([new Line('')]);
+        } else {
+            if ($lines[1]->isNotEmpty()) {
+                throw new UnexpectedValueException("Require a empty line betweet title and content in front matter: $filePath");
+            }
+            $this->body = $lines->slice(2);
         }
 
         preg_match(self::DATE_PATTERN, $filePath, $matches);
         $this->title = $lines->get(0)->value();
         $this->date = $matches[0];
-        $this->body = $lines->slice(2);
     }
 
     /**
